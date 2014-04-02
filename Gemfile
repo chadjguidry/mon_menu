@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+# Use Ruby 2.1.0
+ruby '2.1.0'
 
 group :development, :test do
 	gem 'rspec-rails', '~> 2.14.2'
