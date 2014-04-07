@@ -4,25 +4,23 @@
 			<p>
 				<strong>Don't worry it's not just My Menu. You can create your own menu too.</strong>
 			</p>
-			<button type="button" class="btn btn-large btn-success"><h2>Sign up</h2></button>
+			<%= link_to 'Sign up', new_user_registration_path, 
+						class: "btn btn-large btn-success", style: "font-size:24pt" %>
 		</div>
 		<div class="col-md-4 col-md-offset-2">
 			<p>
 				Already have your own menu. Sign in and see what's for dinner.
 			</p>
-			<form role="form">
-				<div class="form-group">
-					<label for="username">Username</label>
-					<input type="email" class="form-control" id="username" placeholder="Username">
-				</div>
-				<div class="form-group">
-					<label for="password">Password</label>
-					<input type="password" class="form-control" id="password" placeholder="Password">
-				</div>
-				<button type="submit" class="btn btn-primary">Sign in</button>
-			</form>
+			<%= bootstrap_form_for(:user, :url => session_path(:user)) do |f| %>
+				<%= render 'layouts/messages' %>
+			  <%= f.text_field :email, autofocus: true %>
+			  <%= f.password_field :password %>
+			  <%= f.submit 'Sign in', class: "btn btn-large btn-primary" %>
+			  <%= link_to "Forgot your password?", new_password_path(:user) %>
+			<% end %>
 		</div>
 	</div>
+	<br>
 	<br>
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2 text-center">
@@ -30,7 +28,8 @@
 				Don't want to sign up until you know what Mon Menu is all about?
 			</p>
 			<p>
-				<a class="btn btn-large btn-success" href="#">Try it out</a>
+				<a class="btn btn-large btn-success" style="font-size:24pt" 
+					href="/demo">Try it out</a>
 			</p>
 		</div>
 	</div>

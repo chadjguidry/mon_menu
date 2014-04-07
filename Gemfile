@@ -23,6 +23,9 @@ group :test do
 	gem 'growl', '~> 1.0.3'
 end
 
+# Use devise for User authentication
+gem 'devise', '~> 3.2.4'
+
 # Use RMagick for image manipulation
 gem 'rmagick', require: 'RMagick'
 

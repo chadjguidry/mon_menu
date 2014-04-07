@@ -1,3 +1,6 @@
-<%= render 'home_header' %>
-<%= render 'home_main' %>
-<%= render 'home_info_panels' %>
+<% if signed_in? %>
+	<%= render 'shared/users_home' %>
+<% else %>
+	<%= render 'home_header' %>
+	<%= render 'home_main' %>
+<% end %>		
