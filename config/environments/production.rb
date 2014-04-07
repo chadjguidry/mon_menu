@@ -27,7 +27,7 @@ MonMenu::Application.configure do
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = true
+  config.assets.compile = false
 
   # Generate digests for assets URLs.
   config.assets.digest = true
@@ -77,4 +77,17 @@ MonMenu::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  # Email settings
+  config.action_mailer.default_url_options = { host: 'mon-menu.herokuapp.com' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+      :address              => ENV["SMTP_ADDRESS"],
+      :port                 => ENV["SMTP_PORT"],
+      :domain               => ENV["SMTP_DOMAIN"],
+      :user_name            => ENV["SMTP_USERNAME"],
+      :password             => ENV["SMTP_PASSWORD"],
+      :authentication       => 'login',
+      :enable_starttls_auto => true
+  }
 end

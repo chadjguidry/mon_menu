@@ -23,6 +23,9 @@ group :test do
 	gem 'growl', '~> 1.0.3'
 end
 
+# User figaro to hide secure data
+gem 'figaro', '~> 0.7.0'
+
 # Use devise for User authentication
 gem 'devise', '~> 3.2.4'
 
