@@ -1,0 +1,30 @@
+<div class="container jumbotron">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2 text-center">
+			<h1>Add a Food</h1>
+		</div>
+	</div>
+</div>
+
+<div class="container jumbotron">
+	<div class="row">
+		<%= bootstrap_form_for(@food, html: { multipart: true }) do |f| %>
+			<div class="col-md-4 col-md-offset-1 well">
+				<h2>Required Info</h2>
+				<%= f.text_field :name %>
+				<%= f.text_field :description %>
+				<%= f.select :category, options_for_select(%w[Main Side Snack]) %>
+			</div>
+			<div class="col-md-4 col-md-offset-1">
+				<h2>Add Now or Later</h2>
+				<%= f.text_area :ingredients %>
+				<%= f.text_area :prep %>
+				<%= f.text_field :prep_time %>
+				<%= f.fields_for :photo do |p| %>
+			    <%= p.file_field :image_file, label: 'Add image' %>
+			  <% end %>
+			  <%= f.submit 'Add Food', class: "btn btn-large btn-primary" %>
+			</div>
+		<% end %>
+	</div>
+</div>

@@ -11,10 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140405190337) do
+ActiveRecord::Schema.define(version: 20140408154318) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "foods", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "category"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.text     "ingredients"
+    t.text     "prep"
+    t.integer  "prep_time"
+  end
+
+  create_table "photos", force: true do |t|
+    t.string   "photo_name"
+    t.string   "photo_type"
+    t.binary   "photo_image"
+    t.integer  "food_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

@@ -1,12 +1,20 @@
 MonMenu::Application.routes.draw do
   devise_for :users, :controllers => { :passwords => "passwords" }
+  
+  # This route must come before resoures :foods, or images won't be shown
+  get 'foods/show_food_photo' => "foods#show_food_photo"
+
+
+  resources :foods do
+    resources :photos
+  end
+
   root "static_pages#home"
   get 'demo', to: 'static_pages#demo'
+
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -27,12 +35,6 @@ MonMenu::Application.routes.draw do
   #     collection do
   #       get 'sold'
   #     end
-  #   end
-
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
   #   end
 
   # Example resource route with more complex sub-resources:

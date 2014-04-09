@@ -1,0 +1,9 @@
+<h1><%= @food.name %></h1>
+<h2><%= @food.description %></h2>
+<%= link_to 'Edit', edit_food_path(@food), class: "btn btn-large btn-primary" %>
+
+			<% if !@photo.photo_image.blank? %>
+				<%= image_tag url_for(controller: "foods", action: "show_food_photo", 
+															id: @food.id), class: "img-rounded" %>
+			<% end %>
+		
