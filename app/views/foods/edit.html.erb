@@ -28,10 +28,8 @@
 					<% else %>
 						<%= p.file_field :image_file, label: 'Add Image' %>
 					<% end %>
-			  <% end %>
-			</div>
-			<div class="col-md-1">
-				<%= f.submit 'Edit Food', class: "btn btn-large btn-primary" %>
+			  <% end %><br>
+			  <%= f.submit 'Edit Food', class: "btn btn-large btn-primary" %>
 				<br><br>
 				<%= link_to 'Cancel', root_url, class: "btn btn-large btn-danger" %>
 			</div>

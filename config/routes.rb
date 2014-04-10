@@ -1,8 +1,13 @@
 MonMenu::Application.routes.draw do
   devise_for :users, :controllers => { :passwords => "passwords" }
   
-  # This route must come before resoures :foods, or images won't be shown
+  # These routes must come before resoures :foods, or images won't be shown
   get 'foods/show_food_photo' => "foods#show_food_photo"
+  get 'foods/show_food_thumb' => "foods#show_food_thumb"
+  get 'foods/show_homepage_thumb' => "foods#show_homepage_thumb"
+  get 'foods/main_dishes' => "foods#main_dishes"
+  get 'foods/side_dishes' => "foods#side_dishes"
+  get 'foods/snacks' => "foods#snacks"
 
 
   resources :foods do

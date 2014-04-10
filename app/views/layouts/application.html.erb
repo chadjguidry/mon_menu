@@ -8,7 +8,15 @@
   <%= render 'layouts/shim' %>
 </head>
 <body>
+	<% if user_signed_in? %>
+		<%= render '/shared/top_nav' %>
+	<% end %>
 <%= yield %>
+<div class="container">
+	<p>
+		<%= debug(params) if Rails.env.development? %>
+	</p>
+</div>
 	<%= render 'layouts/footer' %>
 </body>
 </html>

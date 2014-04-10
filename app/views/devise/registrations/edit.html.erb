@@ -14,7 +14,7 @@
         <%= f.password_field :password, autocomplete: "off" %>
         <%= f.password_field :password_confirmation, autocomplete: "off" %>
         <%= f.password_field :current_password, autocomplete: "off" %>
-        <%= f.submit "Update", class: "btn btn-large btn-primary" %>
+        <%= f.submit "Update", class: "btn btn-large btn-success" %>
       <% end %>
 
       <h3>Delete my account</h3>
@@ -22,7 +22,7 @@
       <p>Don't want to use Mon Menu anymore? <%= button_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete,
         class: "btn btn-large btn-danger" %></p>
 
-      <%= link_to "Back", :back %>
+      <%= link_to "Cancel", :back, class: "btn btn-large btn-primary" %>
     </div>
   </div>
 </div>
