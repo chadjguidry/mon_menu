@@ -1,6 +1,6 @@
 <div class="container jumbotron">
 	<div class="row">
-		<div class="col-md-8 col-md-offset-2 text-center">
+		<div class="col-md-12 text-center">
 			<h1><%=@food.name %></h1>
 		</div>
 	</div>
@@ -9,6 +9,7 @@
 <div class="container jumbotron">
 	<div class="row">
 		<div class="col-md-5">
+			<%= link_to "Return to Menu", @return_path %>
 			<h2>Description</h2>
 			<p>
 				<%= @food.description %>
@@ -26,12 +27,18 @@
 				<p><%= @food.prep_time %> minutes</p>
 			<% end %>
 			<%= link_to 'Edit', edit_food_path(@food), class: "btn btn-large btn-primary" %>
+			<br><br>
+			<%= link_to "Delete", @food, method: :delete,
+	                 data: { confirm: "Action cannot be undone!\nYou sure?" },
+	                 class: "btn btn-large btn-danger" %>
 		</div>
 		<div class="col-md-6">
 			<% if !@photo.photo_image.blank? %>
 				<%= image_tag url_for(controller: "foods", action: "show_food_photo", 
 																	id: @food.id), class: "img-rounded" %>
-					<% end %>
+			<% else %>
+				<%= image_tag('/assets/empty_plate_annotated.png', alt: "empty plate") %>
+			<% end %>
 		</div>
 	</div>
 </div>

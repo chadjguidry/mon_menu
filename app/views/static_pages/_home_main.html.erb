@@ -13,7 +13,7 @@
 			</p>
 			<%= bootstrap_form_for(:user, :url => session_path(:user)) do |f| %>
 				<%= render 'layouts/messages' %>
-			  <%= f.text_field :email, autofocus: true %>
+			  <%= f.email_field :email, autofocus: true %>
 			  <%= f.password_field :password %>
 			  <%= f.submit 'Sign in', class: "btn btn-large btn-primary" %>
 			  <%= link_to "Forgot your password?", new_password_path(:user) %>

@@ -9,38 +9,75 @@
 <div class="container jumbotron text-center">
 	<div class="row">
 		<div class="col-md-4">
-			<% if !@main_dish.blank? %>
-				<% if !@main_dish_photo.photo_image.blank? %>
-					<%= image_tag url_for(controller: "foods", action: "show_homepage_thumb", 
-																id: @main_dish.first.id), 
-																class: "img-rounded", alt: "no image" %>
+				<% if !@main_dish.blank? %>
+					<% if !@main_dish.first.photo.photo_image.blank? %>
+						<a href="<%= foods_main_dishes_path %>" class="thumbnail">
+							<%= image_tag url_for(controller: "foods", action: "show_homepage_thumb", 
+																		id: @main_dish.first.id), 
+																		class: "img-rounded", alt: "no image" %>
+							<h2>Main Dishes</h2>
+						</a>
+					<% else %>
+						<a href="<%= foods_main_dishes_path %>" class="thumbnail">
+							<%= image_tag "/assets/no_photos_for_main_dishes.png",
+								alt: 'main dishes missing photos' %>
+							<h2>Main Dishes</h2>
+						</a>
+					<% end %>
 				<% else %>
-					None of your main dishes have any pictures yet.
+					<a href="<%= new_food_path(food_category: 'Main') %>" class="thumbnail">
+						<%= image_tag("/assets/no_main_dishes_thumb.png", 
+							alt: "no main dishes") %>
+						<h2>Main Dishes</h2>
+					</a>
 				<% end %>
-			<% else %>
-				<a href="/foods/new"><img src="/assets/no_main_dishes.png"></a>
-			<% end %>
 		</div>
 		<div class="col-md-4">
 			<% if !@side_dish.blank? %>
-				<% if !@side_dish_photo.photo_image.blank? %>
-					<%= link_to(image_tag url_for(controller: "foods", action: "show_homepage_thumb", 
-																id: @side_dish.first.id), 
-																class: "img-rounded", alt: "no image") %>
+				<% if !@side_dish.first.photo.photo_image.blank? %>
+					<a href="<%= foods_side_dishes_path %>" class="thumbnail">
+						<%= image_tag url_for(controller: "foods", action: "show_homepage_thumb", 
+																	id: @side_dish.first.id), 
+																	class: "img-rounded", alt: "no image" %>
+						<h2>Side Dishes</h2>
+					</a>
+				<% else %>
+					<a href="<%= foods_side_dishes_path %>" class="thumbnail">
+							<%= image_tag "/assets/no_photos_for_side_dishes.png",
+								alt: 'side dishes missing photos' %>
+							<h2>Side Dishes</h2>
+						</a>
 				<% end %>
 			<% else %>
-				<a href="/foods/new"><img src="/assets/no_side_dishes.png"></a>
+				<a href="<%= new_food_path(food_category: 'Side') %>" class="thumbnail">
+						<%= image_tag("/assets/no_side_dishes_thumb.png", 
+							alt: "no side dishes") %>
+						<h2>Snacks</h2>
+					</a>
 			<% end %>
 		</div>
 		<div class="col-md-4">
 			<% if !@snack.blank? %>
-				<% if !@snack_photo.photo_image.blank? %>
-					<%= image_tag url_for(controller: "foods", action: "show_homepage_thumb", 
-																id: @snack.first.id), 
-																class: "img-rounded", alt: "no image" %>
+				<% if !@snack.first.photo.photo_image.blank? %>
+					<a href="<%= foods_snacks_path %>" class="thumbnail">
+						<%= image_tag url_for(controller: "foods", action: "show_homepage_thumb", 
+																	id: @snack.first.id), 
+																	class: "img-rounded", alt: "no image" %>
+						<h2>Snacks</h2>
+					</a>
+				<% else %>
+					<a href="<%= foods_snacks_path %>" class="thumbnail">
+							<%= image_tag "/assets/no_photos_for_snacks.png",
+								alt: 'snacks missing photos' %>
+							<h2>Side Dishes</h2>
+						</a>
 				<% end %>
 			<% else %>
-				<a href="/foods/new"><img src="/assets/no_snacks.png"></a>
+				<a href="<%= new_food_path(food_category: 'Snack') %>" class="thumbnail">
+						<%= image_tag("/assets/no_snacks_thumb.png", 
+							alt: "no snacks") %>
+						<h2>Snacks</h2>
+					</a>
 			<% end %>
 		</div>
 	</div>

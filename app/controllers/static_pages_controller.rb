@@ -4,17 +4,23 @@ class StaticPagesController < ApplicationController
   		# Grab a random main dish that has a picture
   		@main_dish = current_user.foods.joins(:photo).where("category = ? 
   			  AND photo_image IS NOT NULL", "Main").limit(1).order("RANDOM()")
-  		@main_dish_photo = @main_dish.first.photo unless @main_dish.blank?
+      if @main_dish.blank?
+        @main_dish = current_user.foods.where("category = ?", 'Main')
+      end
 
   		# Grab a random side dish that has a picture
   		@side_dish = current_user.foods.joins(:photo).where("category = ? 
   				AND photo_image IS NOT NULL", "Side").limit(1).order("RANDOM()")
-  		@side_dish_photo = @side_dish.first.photo unless @side_dish.first.blank?
+      if @side_dish.blank?
+        @side_dish = current_user.foods.where("category = ?", 'Side')
+      end
 
   		# Grab a random snack that has a picture
   		@snack = current_user.foods.joins(:photo).where("category = ? 
   				AND photo_image IS NOT NULL", "Snack").limit(1).order("RANDOM()")
-  		@snack_photo = @snack.first.photo unless @snack.first.blank?
+      if @snack.blank?
+        @snack = current_user.foods.where("category = ?", 'Snack')
+      end
   	end
   end
 

@@ -1,10 +1,13 @@
 <% @foods.each do |food| %>
-	<div class="col-md-3 col-sm-3 center">
+	<div class="col-md-4 col-sm-12 text-center">
 		<a href="<%= food_path(food) %>" class="thumbnail">
-			<% if !food.photo.blank? %>
+			<% if !food.photo.photo_image.blank? %>
 				<%= image_tag url_for(controller: "foods", action: "show_food_thumb", 
 													id: food.id), class: "img-rounded" %>
+			<% else %>
+				<%= image_tag('/assets/empty_plate_thumb.png', alt: 'empty plate') %>
 			<% end %>
+			<h4 class="text-center"><%= food.name %></h4>
 		</a>
 	</div>
 <% end %>

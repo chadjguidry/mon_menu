@@ -13,7 +13,8 @@
 				<h2>Required Info</h2>
 				<%= f.text_field :name %>
 				<%= f.text_field :description %>
-				<%= f.select :category, options_for_select(%w[Main Side Snack]) %>
+				<%= f.select :category, options_for_select(%w[Main Side Snack],
+												@food.category) %>
 			</div>
 			<div class="col-md-4 col-md-offset-1">
 				<h2>Add Now or Later</h2>
@@ -31,7 +32,7 @@
 			  <% end %><br>
 			  <%= f.submit 'Edit Food', class: "btn btn-large btn-primary" %>
 				<br><br>
-				<%= link_to 'Cancel', root_url, class: "btn btn-large btn-danger" %>
+				<%= link_to 'Cancel', :back, class: "btn btn-large btn-danger" %>
 			</div>
 		<% end %>
 	</div>

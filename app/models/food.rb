@@ -3,7 +3,7 @@ class Food < ActiveRecord::Base
 	has_one :photo, dependent: :destroy
 	accepts_nested_attributes_for :photo
 
-	validates :name, presence: true
+	validates :name, presence: true, length: { maximum: 32 }
 	validates :description, presence: true
 	validates_inclusion_of :category, in: %w(Main Side Snack), allow_nil: false
 end

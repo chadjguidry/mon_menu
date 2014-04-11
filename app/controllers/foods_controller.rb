@@ -20,6 +20,16 @@ class FoodsController < ApplicationController
 	def new
 		@food = current_user.foods.new
 		@photo = @food.build_photo
+		# for the users_home add food links if no 
+		# foods exists in the specified category 
+		case params[:food_category]
+		when 'Main'
+			@food.category = 'Main'
+		when 'Side'
+			@food.category = 'Side'
+		when 'Snack'
+			@food.category = 'Snack'
+		end
 	end
 
 	def create
@@ -30,8 +40,7 @@ class FoodsController < ApplicationController
 		end
 		@photo = @food.build_photo if @food.photo.nil?
 		if @food.save
-			flash[:success] = "New Food Added"
-			redirect_to root_url
+			redirect_to food_path(@food)
 		else
 			render 'new'
 		end
@@ -70,13 +79,15 @@ class FoodsController < ApplicationController
 
 	def destroy
 		@food = current_user.foods.find(params[:id])
+		@return_path = category_return_path(@food.category)
 		@food.destroy
-		redirect_to root_url
+		redirect_to @return_path
 	end
 
 	def show
 		@food = current_user.foods.find(params[:id])
 		@photo = @food.photo
+		@return_path = category_return_path(@food.category)
 	end
 
 	def show_food_photo
@@ -87,14 +98,14 @@ class FoodsController < ApplicationController
   def show_food_thumb
     @food = current_user.foods.find(params[:id])
     @photo = @food.photo
-    send_data @photo.create_thumbnail(@food.name), 
+    send_data @photo.create_thumbnail, 
     					type: @photo.photo_type, disposition: "inline"
   end
 
   def show_homepage_thumb
   	@food = current_user.foods.find(params[:id])
     @photo = @food.photo
-    send_data @photo.create_homepage_thumbnail(@food.category), type: @photo.photo_type,
+    send_data @photo.create_homepage_thumbnail, type: @photo.photo_type,
               disposition: "inline"
   end
 
@@ -109,5 +120,16 @@ class FoodsController < ApplicationController
 		params[:food].permit(:name, :description, :category, 
 						:ingredients, :prep, :prep_time, 
 						photo_attributes:[:image_file])
+	end
+
+	def category_return_path(food_category)
+		case food_category
+		when 'Main'
+			foods_main_dishes_path
+		when 'Side'
+			foods_side_dishes_path
+		when 'Snack'
+			foods_snacks_path
+		end
 	end
 end
