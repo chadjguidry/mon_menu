@@ -8,8 +8,10 @@
 
 <div class="container jumbotron">
 	<div class="row">
+		<%= render 'layouts/messages' %>
 		<%= bootstrap_form_for(@food, html: { multipart: true }) do |f| %>
 			<div class="col-md-4 col-md-offset-1 well">
+				
 				<h2>Required Info</h2>
 				<%= f.text_field :name %>
 				<%= f.text_field :description %>
@@ -20,7 +22,7 @@
 				<h2>Add Now or Later</h2>
 				<%= f.text_area :ingredients %>
 				<%= f.text_area :prep %>
-				<%= f.text_field :prep_time %>
+				<%= f.text_field :prep_time, label: 'Prep Time (in minutes)' %>
 				<%= f.fields_for :photo do |p| %>
 			    <%= p.file_field :image_file, label: 'Add image' %>
 			  <% end %>

@@ -8,19 +8,19 @@
 
 <div class="container jumbotron">
 	<div class="row">
-		<div class="col-md-5">
-			<%= link_to "Return to Menu", @return_path %>
+		<div class="col-md-5 well">
+			<%= link_to "Return to Menu", @return_path, class: "btn btn-large btn-primary" %>
 			<h2>Description</h2>
 			<p>
 				<%= @food.description %>
 			</p>
 			<% if !@food.ingredients.blank? %>
 				<h2>Ingredients</h2>
-				<p><%= @food.ingredients %><p>
+				<p><%= simple_format(@food.ingredients) %><p>
 			<% end %>
 			<% if !@food.prep.blank? %>
 				<h2>Preparation</h2>
-				<p><%= @food.prep %><p>
+				<p><%= simple_format(@food.prep) %><p>
 			<% end %>
 			<% if !@food.prep_time.blank? %>
 				<h2>Prep Time</h2>

@@ -20,6 +20,7 @@ class FoodsController < ApplicationController
 	def new
 		@food = current_user.foods.new
 		@photo = @food.build_photo
+
 		# for the users_home add food links if no 
 		# foods exists in the specified category 
 		case params[:food_category]
@@ -33,17 +34,31 @@ class FoodsController < ApplicationController
 	end
 
 	def create
+		# file = food_photo_params[:photo_attributes][:image_file].read
+		# render text: file.size
 		if food_photo_params[:photo_attributes].blank?
 			@food = current_user.foods.build(food_params)
+			@photo = @food.build_photo
+			if @food.save
+				redirect_to food_path(@food)
+			else
+				render 'new'
+			end
 		else
+			image = food_photo_params[:photo_attributes][:image_file]
 			@food = current_user.foods.build(food_photo_params)
-		end
-		@photo = @food.build_photo if @food.photo.nil?
-		if @food.save
-			redirect_to food_path(@food)
-		else
-			render 'new'
-		end
+			if ((image.content_type.eql? 'image/jpeg') || (image.content_type.eql? 'image/png')) && (image.size < 4000000)
+				if @food.save
+					redirect_to food_path(@food)
+				else
+					render 'new'
+				end
+			else
+				@photo = @food.build_photo
+				flash.now[:danger] = "Photo must be a JPEG or PNG under 5 megabytes"
+				render 'new'
+			end
+		end		
 	end
 
 	def edit
@@ -62,16 +77,20 @@ class FoodsController < ApplicationController
 
 		if food_photo_params[:photo_attributes].blank?
 			if @food.update_attributes(food_params)
-				flash[:success] = "Food edited"
 				redirect_to action: :show
 			else
 				render 'edit'
 			end
 		else
-			if @food.update_attributes(food_photo_params)
-				flash[:success] = "Food edited"
-				redirect_to action: :show
+			image = food_photo_params[:photo_attributes][:image_file]
+			if ((image.content_type.eql? 'image/jpeg') || (image.content_type.eql? 'image/png')) && (image.size < 4000000)
+				if @food.update_attributes(food_photo_params)
+					redirect_to action: :show
+				else
+					render 'edit'
+				end
 			else
+				flash.now[:danger] = "Photo must be a JPEG or PNG under 5 megabytes"
 				render 'edit'
 			end
 		end
