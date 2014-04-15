@@ -8,16 +8,17 @@
 
 <div class="container jumbotron">
 	<%= bootstrap_form_for(@food, html: { multipart: true }) do |f| %>
-	<div class="row">
-		<div class="col-md-6 col-md-offset-3 text-center">
-			<%= render 'shared/error_messages', object: f.object %>
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3 text-center">
+				<%= render 'shared/error_messages', object: f.object %>
+			</div>
 		</div>
-	</div>
-	<div class="row">
+		<div class="row">
 		<%= render 'fields', f: f %>
 		  <%= f.submit 'Add Food', class: "btn btn-large btn-primary" %>
 		  <br><br>
 		  <%= link_to 'Cancel', :back, class: "btn btn-large btn-danger" %>
-	</div>
+		</div>
 	<% end %>
+	</div>
 </div>
