@@ -15,13 +15,15 @@
 #
 
 class Food < ActiveRecord::Base
+	
+# Associations
 	belongs_to :user
 	has_one :photo, inverse_of: :food, dependent: :destroy
 	accepts_nested_attributes_for :photo
 
+# Validations
 	validates :user_id, presence: true
-	validates :name, presence: true, length: { maximum: 32 }
-	validates :description, presence: true
+	validates :name, presence: { message: "Name can't be blank" }, length: { maximum: 32 }
+	validates :description, presence: { message: "Description can't be blank" }
 	validates_inclusion_of :category, in: %w(Main Side Snack), allow_nil: false
-	validates_associated :photo
 end

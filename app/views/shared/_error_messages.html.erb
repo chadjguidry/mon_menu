@@ -1,0 +1,17 @@
+<% if object.errors.any? %>
+	<div id="error_explanation">
+		<div class="alert alert-danger">
+			<h4>
+				Please correct the <%= pluralize(object.errors.count, "error") %> and try again.
+			</h4>
+			<br>
+			<ul>
+				<% object.errors.messages.values.each do |msg| %>
+					<% msg.each do |m| %>
+						<li><%= m %></li>
+					<% end %>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+<% end %>

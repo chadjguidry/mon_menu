@@ -38,27 +38,15 @@ class FoodsController < ApplicationController
 		# render text: file.size
 		if food_photo_params[:photo_attributes].blank?
 			@food = current_user.foods.build(food_params)
-			@photo = @food.build_photo
-			if @food.save
-				redirect_to food_path(@food)
-			else
-				render 'new'
-			end
 		else
-			image = food_photo_params[:photo_attributes][:image_file]
 			@food = current_user.foods.build(food_photo_params)
-			if ((image.content_type.eql? 'image/jpeg') || (image.content_type.eql? 'image/png')) && (image.size < 4000000)
-				if @food.save
-					redirect_to food_path(@food)
-				else
-					render 'new'
-				end
-			else
-				@photo = @food.build_photo
-				flash.now[:danger] = "Photo must be a JPEG or PNG under 5 megabytes"
-				render 'new'
-			end
-		end		
+		end
+		if @food.save
+			redirect_to food_path(@food)
+		else
+			@photo = @food.build_photo
+			render 'new'
+		end
 	end
 
 	def edit
@@ -82,15 +70,9 @@ class FoodsController < ApplicationController
 				render 'edit'
 			end
 		else
-			image = food_photo_params[:photo_attributes][:image_file]
-			if ((image.content_type.eql? 'image/jpeg') || (image.content_type.eql? 'image/png')) && (image.size < 4000000)
-				if @food.update_attributes(food_photo_params)
-					redirect_to action: :show
-				else
-					render 'edit'
-				end
+			if @food.update_attributes(food_photo_params)
+				redirect_to action: :show
 			else
-				flash.now[:danger] = "Photo must be a JPEG or PNG under 5 megabytes"
 				render 'edit'
 			end
 		end

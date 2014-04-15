@@ -25,6 +25,17 @@ class StaticPagesController < ApplicationController
   end
 
   def demo
+  end
 
+  def about
+  end
+
+  def privacy
+  end
+
+  def contact
+  end
+
+  def terms_of_service
   end
 end
