@@ -38,6 +38,7 @@ class FoodsController < ApplicationController
 		# render text: file.size
 		if food_photo_params[:photo_attributes].blank?
 			@food = current_user.foods.build(food_params)
+			@food.build_photo
 		else
 			@food = current_user.foods.build(food_photo_params)
 		end
