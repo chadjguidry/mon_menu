@@ -7,13 +7,17 @@
 </div>
 
 <div class="container jumbotron">
-	<div class="row">
-		<%= bootstrap_form_for(@food) do |f| %>
-		<%= render 'shared/error_messages', object: f.object %>
+	<%= bootstrap_form_for(@food) do |f| %>
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3 text-center">
+				<%= render 'shared/error_messages', object: f.object %>
+			</div>
+		</div>
+		<div class="row">
 			<%= render 'fields', f: f %>
-			  <%= f.submit 'Edit Food', class: "btn btn-large btn-primary" %>
-				<br><br>
-				<%= link_to 'Cancel', :back, class: "btn btn-large btn-danger" %>
+			<%= f.submit 'Edit Food', class: "btn btn-large btn-primary" %>
+			<br><br>
+			<%= link_to 'Cancel', :back, class: "btn btn-large btn-danger" %>
 			</div>
 		<% end %>
 	</div>
