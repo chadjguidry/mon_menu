@@ -21,6 +21,8 @@ class StaticPagesController < ApplicationController
       if @snack.blank?
         @snack = current_user.foods.where("category = ?", 'Snack')
       end
+    else
+      render layout: 'visitor_home'
   	end
   end
 

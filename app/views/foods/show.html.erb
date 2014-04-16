@@ -1,10 +1,5 @@
-<div class="container jumbotron">
-	<div class="row">
-		<div class="col-md-12 text-center">
-			<h1><%=@food.name %></h1>
-		</div>
-	</div>
-</div>
+<% provide(:title, 'Show Food') %>
+<% provide(:page_heading, @food.name) %>
 
 <div class="container jumbotron">
 	<div class="row">

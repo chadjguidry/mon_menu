@@ -1,10 +1,5 @@
-<div class="container jumbotron">
-	<div class="row">
-		<div class="col-md-8 col-md-offset-2 text-center">
-			<h1>Edit <%=@food.name %></h1>
-		</div>
-	</div>
-</div>
+<% provide(:title, 'Edit Food') %>
+<% provide(:page_heading, @food.name) %>
 
 <div class="container jumbotron">
 	<%= bootstrap_form_for(@food) do |f| %>

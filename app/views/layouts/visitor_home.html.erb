@@ -8,12 +8,7 @@
   <%= render 'layouts/shim' %>
 </head>
 <body>
-	<% if user_signed_in? %>
-		<%= render '/shared/user_nav' %>
-	<% else %>
-		<%= render '/shared/visitor_nav' %>
-	<% end %>
-	<%= render 'layouts/header' %>
+<%= render 'shared/visitor_nav' %>
 <%= yield %>
 <div class="container">
 	<p>

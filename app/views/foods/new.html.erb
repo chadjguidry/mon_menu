@@ -1,10 +1,5 @@
-<div class="container jumbotron">
-	<div class="row">
-		<div class="col-md-8 col-md-offset-2 text-center">
-			<h1>Add a Food</h1>
-		</div>
-	</div>
-</div>
+<% provide(:title, 'Add Food') %>
+<% provide(:page_heading, 'Add a Food') %>
 
 <div class="container jumbotron">
 	<%= bootstrap_form_for(@food, html: { multipart: true }) do |f| %>
