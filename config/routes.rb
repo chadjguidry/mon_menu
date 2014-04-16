@@ -9,14 +9,19 @@ MonMenu::Application.routes.draw do
   get 'foods/side_dishes' => "foods#side_dishes"
   get 'foods/snacks' => "foods#snacks"
 
+  get 'contact' => 'contact_forms#new'
+  get 'contact_forms' => 'contact_forms#new'
+
 
   resources :foods do
     resources :photos
   end
 
+  resources :contact_forms, only: [:new, :create]
+
   root "static_pages#home"
   get 'about' => 'static_pages#about'
-  get 'contact' => 'static_pages#contact'
+  
   get 'privacy' => 'static_pages#privacy'
   get 'terms_of_service' => 'static_pages#terms_of_service'
   get 'demo' => 'static_pages#demo'
