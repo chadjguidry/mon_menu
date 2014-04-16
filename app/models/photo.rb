@@ -31,8 +31,8 @@ MAX_IMAGE_SIZE = 5242880
 # Custom validation method
   def photo_image_cannot_be_too_large
     if !self.photo_image.blank?
-      image = File.open("temp", 'wb') {|f| f.write self.photo_image }
-      if image.size > MAX_IMAGE_SIZE
+      image_size = self.photo_image.bytesize
+      if image_size > MAX_IMAGE_SIZE
         errors.add(:photo_image, "Photo can't be larger than 5 megabytes")
       end
     end
