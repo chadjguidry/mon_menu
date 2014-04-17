@@ -81,7 +81,11 @@ class FoodsController < ApplicationController
 
 	def destroy
 		@food = current_user.foods.find(params[:id])
-		@return_path = category_return_path(@food.category)
+		if request.referer.end_with?("/foods")
+			@return_path = request.referer
+		else
+			@return_path = category_return_path(@food.category)
+		end
 		@food.destroy
 		redirect_to @return_path
 	end
