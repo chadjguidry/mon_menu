@@ -2,18 +2,22 @@ class FoodsController < ApplicationController
 	before_action :authenticate_user!
 
 	def index
+		# load foods and sort alphabetically
 		@foods = current_user.foods.load.order('name')
 	end
 
 	def main_dishes
+		# load only Main Dishes and sort alphabetically
 		@foods = current_user.foods.where("category = ?", "Main").order('name')
 	end
 
 	def side_dishes
+		# load only Side Dishes and sort alphabetically
 		@foods = current_user.foods.where("category = ?", "Side").order('name')
 	end
 
 	def snacks
+		# load only Snacks and sort alphabetically
 		@foods = current_user.foods.where("category = ?", "Snack").order('name')
 	end
 
