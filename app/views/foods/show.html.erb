@@ -27,12 +27,13 @@
 	                 data: { confirm: "Action cannot be undone!\nYou sure?" },
 	                 class: "btn btn-large btn-danger" %>
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-6 col-md-offset-1 well">
 			<% if !@photo.photo_image.blank? %>
 				<%= image_tag url_for(controller: "foods", action: "show_food_photo", 
-																	id: @food.id), class: "img-rounded" %>
+																	id: @food.id), class: "img-rounded img-responsive" %>
 			<% else %>
-				<%= image_tag('/assets/empty_plate_annotated.png', alt: "empty plate") %>
+				<%= image_tag('/assets/empty_plate_annotated.png', alt: "empty plate",
+											class: "img-rounded img-responsive") %>
 			<% end %>
 		</div>
 	</div>
