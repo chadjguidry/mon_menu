@@ -31,6 +31,15 @@ class FoodsController < ApplicationController
 		when 'Snack'
 			@food.category = 'Snack'
 		end
+
+		# auto populate category field based on where the user
+		# chose the Add Food link
+		case 
+		when request.referer.end_with?("/side_dishes")
+			@food.category = 'Side'
+		when request.referer.end_with?("/snacks")
+			@food.category = 'Snack'
+		end
 	end
 
 	def create
